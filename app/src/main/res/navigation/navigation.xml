@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.application.welearnjava.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_lessonFragment"
+            app:destination="@id/lessonFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_codeFragment"
+            app:destination="@id/codeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_referenceFragment"
+            app:destination="@id/referenceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lessonFragment"
+        android:name="com.application.welearnjava.LessonFragment"
+        android:label="fragment_lesson"
+        tools:layout="@layout/fragment_lesson" >
+        <action
+            android:id="@+id/action_lessonFragment_to_documentationFragment"
+            app:destination="@id/documentationFragment" />
+        <action
+            android:id="@+id/action_lessonFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/documentationFragment"
+        android:name="com.application.welearnjava.DocumentationFragment"
+        android:label="fragment_documentation"
+        tools:layout="@layout/fragment_documentation" />
+    <fragment
+        android:id="@+id/codeFragment"
+        android:name="com.application.welearnjava.CodeFragment"
+        android:label="fragment_code"
+        tools:layout="@layout/fragment_code" />
+    <fragment
+        android:id="@+id/referenceFragment"
+        android:name="com.application.welearnjava.ReferenceFragment"
+        android:label="fragment_reference"
+        tools:layout="@layout/fragment_reference" />
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.application.welearnjava.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" />
+</navigation>

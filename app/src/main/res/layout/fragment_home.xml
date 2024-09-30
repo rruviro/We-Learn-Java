@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".HomeFragment">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/primary_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="We learn java"
+        android:textColor="@color/white"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.9"
+        android:text="Learn Basic Java Programming"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        app:layout_constraintStart_toStartOf="@+id/logo"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+        <View
+            android:id="@+id/greetings"
+            android:layout_height="120dp"
+            android:background="@drawable/curved"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_width="0dp"/>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="-15dp"
+            android:layout_marginBottom="-17dp"
+            android:src="@drawable/greetingimage"
+            app:layout_constraintBottom_toBottomOf="@+id/greetings"
+            app:layout_constraintEnd_toEndOf="@+id/greetings" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="-5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/pin"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello, fellow users!"
+            android:textColor="@color/white"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="This application is designed to meet your development needs. Come explore our features!"
+            android:textColor="@color/white"
+            android:textSize="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/greetings"
+            app:layout_constraintStart_toStartOf="@+id/greetings" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/features"-->
+<!--            android:layout_width="36dp"-->
+<!--            android:layout_height="18dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Features"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="10dp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/greetings"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/greetings" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView3"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:alpha="0.7"-->
+<!--            android:text="is a specific function or capability of a software app, such as messaging, file sharing, or video calls."-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="8dp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/features"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/features" />-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lessonBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/greetings">
+
+            <View
+                android:id="@+id/textView4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/primary_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/book"
+                app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                app:layout_constraintEnd_toEndOf="@+id/textView4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lessonTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="11dp"
+                android:text="Start Learning"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lessondescrip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:alpha="0.7"
+                android:text="Discover and explore the basic concept of java"
+                android:textColor="@color/black"
+                android:textSize="8dp"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/lessonTxt" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/codebtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/lessonBtn">
+
+            <View
+                android:id="@+id/code_side"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/primary_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/curly"
+                app:layout_constraintBottom_toBottomOf="@+id/code_side"
+                app:layout_constraintEnd_toEndOf="@+id/code_side"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/codetxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="11dp"
+                android:text="Code with us"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                app:layout_constraintStart_toEndOf="@+id/code_side"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/codedescript"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.7"
+                android:text="implement your knowledge that you gather in java"
+                android:textColor="@color/black"
+                android:textSize="8dp"
+                app:layout_constraintStart_toStartOf="@+id/codetxt"
+                app:layout_constraintTop_toBottomOf="@+id/codetxt" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/challengesBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/codebtn">
+
+            <View
+                android:id="@+id/daily_side"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/primary_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/puzzle"
+                app:layout_constraintBottom_toBottomOf="@+id/daily_side"
+                app:layout_constraintEnd_toEndOf="@+id/daily_side"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dailytxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="11dp"
+                android:text="Daily Challenges"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                app:layout_constraintStart_toEndOf="@+id/daily_side"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dailydescript"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.7"
+                android:text="are daily tasks for growth and habit-building."
+                android:textColor="@color/black"
+                android:textSize="8dp"
+                app:layout_constraintStart_toStartOf="@+id/dailytxt"
+                app:layout_constraintTop_toBottomOf="@+id/dailytxt" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/referenceBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            app:layout_constraintStart_toStartOf="@+id/challengesBtn"
+            app:layout_constraintTop_toBottomOf="@+id/challengesBtn">
+
+            <TextView
+                android:id="@+id/reference_side"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/primary_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/reference"
+                app:layout_constraintBottom_toBottomOf="@+id/reference_side"
+                app:layout_constraintEnd_toEndOf="@+id/reference_side"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/referencetxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="11dp"
+                android:text="Reference"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                app:layout_constraintStart_toEndOf="@+id/reference_side"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/referencedescript"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.7"
+                android:text="Gathered realtime information about java and others."
+                android:textColor="@color/black"
+                android:textSize="8dp"
+                app:layout_constraintStart_toStartOf="@+id/referencetxt"
+                app:layout_constraintTop_toBottomOf="@+id/referencetxt" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/referenceBtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
