@@ -31,7 +31,7 @@ class LessonFragment : Fragment(), LessonAdapter.OnItemClickListener { // Implem
             findNavController().navigate(R.id.action_lessonFragment_to_quizFragment)
         }
         binding.back.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_lessonFragment_to_homeFragment)
         }
 
         return binding.root
@@ -41,7 +41,7 @@ class LessonFragment : Fragment(), LessonAdapter.OnItemClickListener { // Implem
         val bundle = Bundle().apply {
             putString("Id", lesson.id.toString()) // Assuming Lessons implements Serializable
         }
-         findNavController().navigate(R.id.action_lessonFragment_to_documentationFragment, bundle)
+        findNavController().navigate(R.id.action_lessonFragment_to_documentationFragment, bundle)
     }
 
 }

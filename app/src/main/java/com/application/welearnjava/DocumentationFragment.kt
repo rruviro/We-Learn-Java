@@ -29,6 +29,9 @@ class DocumentationFragment : Fragment(), DocumentationAdapter.OnItemClickListen
 
         // Get the Id passed through arguments
         val Id = arguments?.getString("Id") ?: return binding.root
+        val bundle = Bundle().apply {
+            putString("Id", Id) // Assuming Lessons implements Serializable
+        }
         // Initialize your adapter with the documentation list
         documentationAdapter = DocumentationAdapter(Documentation.documentation, Id.toInt(), this)
 
@@ -36,6 +39,10 @@ class DocumentationFragment : Fragment(), DocumentationAdapter.OnItemClickListen
         binding.documentationRecycle.adapter = documentationAdapter
         binding.documentationRecycle.layoutManager = LinearLayoutManager(requireContext())
         binding.documentationRecycle.isNestedScrollingEnabled = true
+
+        binding.exeBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_documentationFragment_to_exerciseFragment, bundle)
+        }
 
         binding.back.setOnClickListener {
             findNavController().popBackStack()

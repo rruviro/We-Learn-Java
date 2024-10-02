@@ -22,6 +22,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_lessonFragment)
         }
 
+        binding.challengesBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_challengeFragment)
+        }
+
         binding.codebtn.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_codeFragment)
         }

@@ -1,14 +1,13 @@
 package com.application.welearnjava
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebViewClient
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.application.welearnjava.databinding.FragmentCodeBinding
 
@@ -20,7 +19,7 @@ class CodeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Fix: Attach view later, passing false as the third argument
+        // Inflate the layout using the binding
         binding = FragmentCodeBinding.inflate(inflater, container, false)
 
         // Configure WebView
@@ -38,9 +37,17 @@ class CodeFragment : Fragment() {
         }
 
         binding.webView.webViewClient = WebViewClient()
-        binding.webView.loadUrl("https://www.jdoodle.com/")
+        binding.webView.loadUrl("https://onecompiler.com/java")
 
-        // Fix: Use the correct navigation method to go back
+        // Disable vertical scrolling
+        binding.webView.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_MOVE) {
+                return@setOnTouchListener true // Consume the event to prevent scrolling
+            }
+            false
+        }
+
+        // Handle back button
         binding.back.setOnClickListener {
             findNavController().popBackStack() // Go back to the previous fragment
         }

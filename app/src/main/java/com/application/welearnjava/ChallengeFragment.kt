@@ -6,20 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.application.welearnjava.databinding.FragmentQuizBinding
+import com.application.welearnjava.databinding.FragmentChallengeBinding
 
-class QuizFragment : Fragment() {
+class ChallengeFragment : Fragment() {
 
-    private lateinit var binding: FragmentQuizBinding
+    private lateinit var binding: FragmentChallengeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentQuizBinding.inflate(inflater, container, false)
+        binding = FragmentChallengeBinding.inflate(inflater, container, false)
 
         binding.back.setOnClickListener {
-            findNavController().navigate(R.id.action_quizFragment_to_lessonFragment)
+            findNavController().popBackStack()
         }
 
         return binding.root
