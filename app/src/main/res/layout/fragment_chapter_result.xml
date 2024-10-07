@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/percentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -47,15 +47,14 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="109dp"
         android:layout_marginTop="10dp"
         android:text="Congratulation, You have scored"
         android:textColor="@color/white"
         android:textSize="13dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textView12"
-        app:layout_constraintStart_toStartOf="@+id/view3"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintEnd_toEndOf="@+id/percentage"
+        app:layout_constraintStart_toStartOf="@+id/percentage"
+        app:layout_constraintTop_toBottomOf="@+id/percentage" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
@@ -101,6 +100,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/totalQue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -158,12 +158,12 @@
                             android:layout_marginTop="6dp"
                             android:layout_marginBottom="3dp"
                             android:background="@drawable/icon_correct"
-                            app:layout_constraintBottom_toBottomOf="@+id/textView16"
+                            app:layout_constraintBottom_toBottomOf="@+id/totalCorrect"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/textView16" />
+                            app:layout_constraintTop_toTopOf="@+id/totalCorrect" />
 
                         <TextView
-                            android:id="@+id/textView16"
+                            android:id="@+id/totalCorrect"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -219,12 +219,12 @@
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="3dp"
                         android:background="@drawable/icon_wrong"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                        app:layout_constraintBottom_toBottomOf="@+id/totalMistake"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView18" />
+                        app:layout_constraintTop_toTopOf="@+id/totalMistake" />
 
                     <TextView
-                        android:id="@+id/textView18"
+                        android:id="@+id/totalMistake"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"

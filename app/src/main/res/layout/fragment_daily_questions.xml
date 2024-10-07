@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".DailyQuestionsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/progress_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Background for the Progress Bar -->
+        <View
+            android:id="@+id/progressBackground"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#E7E7E7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Foreground for the Progress Bar -->
+        <View
+            android:id="@+id/progressForeground"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:background="@color/primary_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Main container with padding -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Question Text with bottom margin for spacing -->
+        <TextView
+            android:id="@+id/questionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:adjustViewBounds="true"
+            android:maxHeight="200dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/questionText" />
+
+        <!-- Multiple Choice Buttons -->
+        <LinearLayout
+            android:id="@+id/multiple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/buttons"
+                android:gravity="center"
+                android:text="A. James Gosling"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/buttons"
+                android:gravity="center"
+                android:text="B. Other Option"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/buttons"
+                android:gravity="center"
+                android:text="C. Another Option"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/buttons"
+                android:gravity="center"
+                android:text="D. Last Option"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/truefalseContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/right"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/buttons"
+                android:text="True" />
+
+            <TextView
+                android:id="@+id/wrong"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/buttons"
+                android:text="False" />
+
+        </LinearLayout>
+
+        <!-- Fill-in-the-Blank Layout -->
+        <LinearLayout
+            android:id="@+id/fillInTheBlankContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <!-- Text before the blank -->
+            <TextView
+                android:id="@+id/fillInTheBlankPrefix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black" />
+
+            <!-- The blank (user's answer input) -->
+            <EditText
+                android:id="@+id/fillInTheBlankAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_stroke"
+                android:gravity="center"
+                android:hint="ANSWEER"
+                android:inputType="text"
+                android:visibility="invisible"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+            <!-- Text after the blank -->
+            <TextView
+                android:id="@+id/fillInTheBlankSuffix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <!-- Submit Button -->
+        <TextView
+            android:id="@+id/submitBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:background="@drawable/buttons"
+            android:text="Submit" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

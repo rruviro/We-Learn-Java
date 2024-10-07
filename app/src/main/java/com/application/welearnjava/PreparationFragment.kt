@@ -6,20 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.application.welearnjava.databinding.FragmentChallengeBinding
+import com.application.welearnjava.databinding.FragmentPreparationBinding
 
-class ChallengeFragment : Fragment() {
+class PreparationFragment : Fragment() {
 
-    private lateinit var binding: FragmentChallengeBinding
-
+    private lateinit var binding: FragmentPreparationBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentChallengeBinding.inflate(inflater, container, false)
+        binding = FragmentPreparationBinding.inflate(inflater, container, false)
 
-        binding.back.setOnClickListener {
+        binding.no.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.yes.setOnClickListener {
+            findNavController().navigate(R.id.action_preparationFragment_to_chapterQueFragment)
         }
 
         return binding.root
