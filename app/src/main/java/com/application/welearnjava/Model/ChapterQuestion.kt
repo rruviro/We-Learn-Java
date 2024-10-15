@@ -3,12 +3,14 @@ package com.application.welearnjava.Model
 import com.application.welearnjava.R
 
 data class ChapterQuestion(
-    val type: ChapterType,   // MULTIPLE_CHOICE or FILL_IN_THE_BLANK
-    val question: String,     // The actual question text with blanks
+    val exerciseId: Int, //primary key
+    val id: Int, // foreign key
+    val type: ChapterType,   // MULTIPLE_CHOICE, FILL_IN_THE_BLANK, or TRUE_FALSE
+    val question: String,     // The actual question text
     val imageQuestion: Int,   // Image associated with the question, if any
     val options: List<String>?, // A list of options (only for multiple-choice questions)
-    val answers: List<String>, // List of correct answers corresponding to blanks
-    var selectedAnswers: MutableList<String>? = null // User's answers for each blank
+    val answers: List<String>, // List of correct answers
+    var selectedAnswers: MutableList<String>? = null // User's answers
 )
 
 enum class ChapterType {
@@ -17,53 +19,47 @@ enum class ChapterType {
     TRUE_FALSE
 }
 
-val chapter_questions = listOf(
+// Updated list of questions
+val chapterQuestions = listOf(
 
     ChapterQuestion(
-        ChapterType.MULTIPLE_CHOICE,
-        "What is the capital of France?",
-        0,
-        listOf("Paris", "Berlin", "Rome", "Madrid"), // Options for the question
-        listOf("Paris") // Correct answer as a list
+        id = 1,
+        exerciseId = 1,
+        type = ChapterType.MULTIPLE_CHOICE,
+        question = "What is the purpose of the main method in Java?",
+        imageQuestion = 0,
+        options = listOf("A) To define a class", "B) To execute the program", "C) To declare variables", "D) To comment code"),
+        answers = listOf("B) To execute the program")
     ),
 
     ChapterQuestion(
-        ChapterType.TRUE_FALSE,
-        "Does String is used for Numbers?",
-        0,
-        listOf("True", "False"), // Options for the question
-        listOf("True") // Correct answer as a list
+        id = 1,
+        exerciseId = 2,
+        type = ChapterType.TRUE_FALSE,
+        question = "What is a key feature of Java?",
+        imageQuestion = 0,
+        options = listOf("A) It is platform-dependent", "B) It uses a compiler only", "C) It is object-oriented", "D) It is a markup language"),
+        answers = listOf("C) It is object-oriented") // Correct answer
     ),
 
     ChapterQuestion(
-        ChapterType.TRUE_FALSE,
-        "Is null has value?",
-        0,
-        listOf("True", "False"), // Options for the question
-        listOf("False") // Correct answer as a list
+        id = 1,
+        exerciseId = 3,
+        type = ChapterType.TRUE_FALSE,
+        question = "Does null have value?",
+        imageQuestion = 0,
+        options = listOf("True", "False"),
+        answers = listOf("False")
     ),
 
     ChapterQuestion(
-        ChapterType.MULTIPLE_CHOICE,
-        "Which planet is known as the Red Planet?",
-        0,
-        listOf("Earth", "Mars", "Jupiter", "Venus"),
-        listOf("Mars") // Correct answer as a list
+        id = 1,
+        exerciseId = 4,
+        type = ChapterType.FILL_IN_THE_BLANK,
+        question = "Water freezes at _____ degrees Celsius.",
+        imageQuestion = R.drawable._super, // Ensure this drawable exists
+        options = null,
+        answers = listOf("0")
     ),
 
-    ChapterQuestion(
-        ChapterType.FILL_IN_THE_BLANK,
-        "Water freezes at _____ degrees Celsius.",
-        R.drawable._super, // Make sure this image exists in your res/drawable directory
-        null, // No options for fill-in-the-blank questions
-        listOf("0") // Correct answer as a list
-    ),
-
-    ChapterQuestion(
-        ChapterType.FILL_IN_THE_BLANK,
-        "Water freezes at _____ degrees Celsius and _____ boils at _____ degrees",
-        R.drawable._super, // Image reference
-        null, // No options for fill-in-the-blank questions
-        listOf("0", "100", "200") // Correct answers as a list
-    )
 )

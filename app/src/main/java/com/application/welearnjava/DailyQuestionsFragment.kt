@@ -15,6 +15,7 @@ import android.os.Handler
 import android.os.Looper
 import android.text.InputType
 import android.text.TextUtils
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.WindowManager
@@ -23,18 +24,21 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.application.welearnjava.Api.RetrofitClient
 import com.application.welearnjava.Model.DailyQuestion
 import com.application.welearnjava.Model.QuestionType
-import com.application.welearnjava.Model.questions
 import com.application.welearnjava.databinding.FragmentDailyQuestionsBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DailyQuestionsFragment : Fragment() {
 
     private lateinit var binding: FragmentDailyQuestionsBinding
-    private var currentQuestion: DailyQuestion? = null
+    private var currentQuestion: List<DailyQuestion> = listOf()
     private var currentIndex = 0
     private var score = 0
-    private val randomQuestions = questions.shuffled()
+    private var randomQuestions = currentQuestion.shuffled()
     private var selectedAnswer: String = ""
 
     override fun onCreateView(
@@ -42,8 +46,68 @@ class DailyQuestionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDailyQuestionsBinding.inflate(inflater, container, false)
-        loadQuestion()
+        fetchQuestionsFromApi()
         return binding.root
+    }
+
+    private fun fetchQuestionsFromApi() {
+        RetrofitClient.instance.getDailyQuestions().enqueue(object : Callback<List<DailyQuestion>> {
+            override fun onResponse(
+                call: Call<List<DailyQuestion>>, response: Response<List<DailyQuestion>>
+            ) {
+                if (response.isSuccessful && response.body() != null) {
+                    // Save the fetched questions
+                    currentQuestion = response.body()!!
+                    randomQuestions = currentQuestion.shuffled()
+
+                    loadQuestion() // Load the first question
+                } else {
+                    Toast.makeText(requireContext(), "Failed to load questions", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<DailyQuestion>>, t: Throwable) {
+                Log.e("API_ERROR", "Error fetching questions", t)
+                Toast.makeText(requireContext(), "Error fetching questions", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+
+    private fun loadQuestion() {
+        // Ensure there are questions available before loading
+        if (currentQuestion.isNotEmpty() && currentIndex < currentQuestion.size) {
+            val question = currentQuestion[currentIndex] // Get current question
+            binding.questionText.text = question.question
+            binding.imageView.setImageResource(question.imageQuestion)
+
+            // Update progress bar
+            updateProgress(currentIndex, currentQuestion.size)
+            when (question.type) {
+                QuestionType.MULTIPLE_CHOICE -> {
+                    binding.multiple.visibility = View.VISIBLE
+                    binding.truefalseContainer.visibility = View.GONE
+                    binding.fillInTheBlankContainer.visibility = View.GONE
+                    binding.submitBtn.visibility = View.GONE // Hide submit button for multiple choice
+                    showMultipleChoiceButtons(question)
+                }
+                QuestionType.FILL_IN_THE_BLANK -> {
+                    binding.multiple.visibility = View.GONE
+                    binding.truefalseContainer.visibility = View.GONE
+                    binding.fillInTheBlankContainer.visibility = View.VISIBLE
+                    binding.submitBtn.visibility = View.VISIBLE // Show submit button for fill-in-the-blank
+                    hideMultipleChoiceButtons()
+                    setupFillInTheBlank(question)
+                }
+                QuestionType.TRUE_FALSE -> {
+                    binding.multiple.visibility = View.GONE
+                    binding.truefalseContainer.visibility = View.VISIBLE
+                    binding.fillInTheBlankContainer.visibility = View.INVISIBLE
+                    binding.submitBtn.visibility = View.GONE
+                    showTwoChoiceButton(question)
+                }
+            }
+        }
     }
 
     private fun updateProgress(currentIndex: Int, totalQuestions: Int) {
@@ -71,44 +135,6 @@ class DailyQuestionsFragment : Fragment() {
         animator.duration = 700 // Change this to adjust the speed of the animation
         animator.start()
 
-    }
-
-
-
-    private fun loadQuestion() {
-        currentQuestion = randomQuestions[currentIndex]
-        currentQuestion?.let { question ->
-            binding.questionText.text = question.question
-            binding.imageView.setImageResource(currentQuestion!!.imageQuestion)
-
-            // Update progress bar
-            updateProgress(currentIndex, randomQuestions.size)
-            when (question.type) {
-                QuestionType.MULTIPLE_CHOICE -> {
-                    binding.multiple.visibility = View.VISIBLE
-                    binding.truefalseContainer.visibility = View.GONE
-                    binding.fillInTheBlankContainer.visibility = View.GONE
-                    binding.submitBtn.visibility = View.GONE // Hide submit button for multiple choice
-                    showMultipleChoiceButtons(question)
-                }
-                QuestionType.FILL_IN_THE_BLANK -> {
-                    binding.multiple.visibility = View.GONE
-                    binding.truefalseContainer.visibility = View.GONE
-                    binding.fillInTheBlankContainer.visibility = View.VISIBLE
-                    binding.submitBtn.visibility = View.VISIBLE // Show submit button for fill-in-the-blank
-                    hideMultipleChoiceButtons()
-                    setupFillInTheBlank(question)
-                }
-                QuestionType.TRUE_FALSE -> {
-                    binding.multiple.visibility = View.GONE
-                    binding.truefalseContainer.visibility = View.VISIBLE
-                    binding.fillInTheBlankContainer.visibility = View.INVISIBLE
-                    binding.submitBtn.visibility = View.GONE
-                    showTwoChoiceButton(question)
-                }
-            }
-
-        }
     }
 
     private fun showTwoChoiceButton(question: DailyQuestion) {
@@ -164,7 +190,9 @@ class DailyQuestionsFragment : Fragment() {
     }
 
     private fun checkAnswer(view: View) {
-        val isCorrect = currentQuestion?.answers?.contains(selectedAnswer) == true // For multiple answers
+        val question = currentQuestion[currentIndex] // Get the current question
+        val isCorrect = question.answers.contains(selectedAnswer) // Check if the selected answer is in the correct answers
+
         if (isCorrect) {
             changeButtonBackgroundColor(view, Color.rgb(57, 172, 96)) // Green
             Toast.makeText(requireContext(), "Correct!", Toast.LENGTH_SHORT).show()
@@ -308,7 +336,7 @@ class DailyQuestionsFragment : Fragment() {
         }
 
         // Get the correct answers
-        val correctAnswers = currentQuestion?.answers ?: emptyList()
+        val correctAnswers = currentQuestion[currentIndex].answers
 
         // Iterate over user answers and check correctness
         for (i in userAnswers.indices) {
