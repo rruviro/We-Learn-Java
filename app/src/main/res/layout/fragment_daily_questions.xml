@@ -29,6 +29,7 @@
             android:id="@+id/progressForeground"
             android:layout_width="0dp"
             android:layout_height="10dp"
+            android:visibility="invisible"
             android:background="@color/primary_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -198,6 +199,7 @@
             android:textColor="@color/white"
             android:gravity="center"
             android:textStyle="bold"
+            android:visibility="invisible"
             android:background="@drawable/buttons"
             android:text="Submit" />
 

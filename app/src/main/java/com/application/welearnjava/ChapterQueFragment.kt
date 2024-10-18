@@ -33,7 +33,7 @@ class ChapterQueFragment : Fragment() {
     private var currentQuestion: DailyQuestion? = null
     private var currentIndex = 0
     private var score = 0
-    private val randomQuestions = questions.shuffled()
+    private val randomQuestions = questions.shuffled().take(20)
     private var selectedAnswer: String = ""
     private var timeLeftInMillis: Long = 20000 // 30 seconds in milliseconds
     private lateinit var countDownTimer: CountDownTimer
