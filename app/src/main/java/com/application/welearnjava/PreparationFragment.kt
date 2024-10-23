@@ -17,12 +17,17 @@ class PreparationFragment : Fragment() {
     ): View? {
         binding = FragmentPreparationBinding.inflate(inflater, container, false)
 
+        val Id = arguments?.getString("Id") ?: return binding.root
+        val bundle = Bundle().apply {
+            putString("Id", Id) // Assuming Lessons implements Serializable
+        }
+
         binding.no.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_preparationFragment_to_quizFragment)
         }
 
         binding.yes.setOnClickListener {
-            findNavController().navigate(R.id.action_preparationFragment_to_chapterQueFragment)
+            findNavController().navigate(R.id.action_preparationFragment_to_chapterQueFragment, bundle)
         }
 
         return binding.root

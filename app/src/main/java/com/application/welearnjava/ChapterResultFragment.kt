@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.application.welearnjava.Model.Chapter
 import com.application.welearnjava.Model.DailyQuestion
 import com.application.welearnjava.Model.questions
 import com.application.welearnjava.databinding.FragmentChapterResultBinding
@@ -20,6 +22,11 @@ class ChapterResultFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentChapterResultBinding.inflate(inflater, container, false)
+
+        val Id = arguments?.getString("Id") ?: return binding.root
+        val bundle = Bundle().apply {
+            putString("Id", Id) // Assuming Lessons implements Serializable
+        }
 
         // Get the total score and total question from arguments
         val totalScore = arguments?.getInt("totalScore") ?: 0
@@ -39,7 +46,7 @@ class ChapterResultFragment : Fragment() {
         binding.totalMistake.text = mistake.toString()
 
         binding.retake.setOnClickListener {
-            findNavController().navigate(R.id.action_chapterResultFragment_to_preparationFragment)
+            findNavController().navigate(R.id.action_chapterResultFragment_to_preparationFragment, bundle)
         }
 
         binding.quiz.setOnClickListener {

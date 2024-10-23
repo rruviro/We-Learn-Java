@@ -33,27 +33,37 @@ val chapterQuestions = listOf(
     ),
 
     ChapterQuestion(
-        id = 1,
+        id = 2,
+        exerciseId = 1,
+        type = ChapterType.MULTIPLE_CHOICE,
+        question = "Whatakjshdjaksdasd is the purpose of the main method in Java?",
+        imageQuestion = 0,
+        options = listOf("A) To define a class", "B) To execute the program", "C) To declare variables", "D) To comment code"),
+        answers = listOf("B) To execute the program")
+    ),
+
+    ChapterQuestion(
+        id = 2,
         exerciseId = 2,
-        type = ChapterType.TRUE_FALSE,
-        question = "What is a key feature of Java?",
+        type = ChapterType.MULTIPLE_CHOICE,
+        question = "What is a key asdasdasdfeature of Java?",
         imageQuestion = 0,
         options = listOf("A) It is platform-dependent", "B) It uses a compiler only", "C) It is object-oriented", "D) It is a markup language"),
         answers = listOf("C) It is object-oriented") // Correct answer
     ),
 
     ChapterQuestion(
-        id = 1,
+        id = 2,
         exerciseId = 3,
         type = ChapterType.TRUE_FALSE,
-        question = "Does null have value?",
+        question = "Does null dasdasd value?",
         imageQuestion = 0,
         options = listOf("True", "False"),
         answers = listOf("False")
     ),
 
     ChapterQuestion(
-        id = 1,
+        id = 2,
         exerciseId = 4,
         type = ChapterType.FILL_IN_THE_BLANK,
         question = "Water freezes at _____ degrees Celsius.",
