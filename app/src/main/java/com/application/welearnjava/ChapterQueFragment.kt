@@ -1,6 +1,8 @@
 package com.application.welearnjava
 
 import android.animation.ValueAnimator
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.InputType
@@ -201,13 +203,27 @@ class ChapterQueFragment : Fragment() {
     }
 
     private fun handleAnswer(selectedAnswer: String, id: String) {
+        val selectedButton = when (selectedAnswer) {
+            binding.right.text -> binding.right
+            binding.wrong.text -> binding.wrong
+            binding.button1.text -> binding.button1
+            binding.button2.text -> binding.button2
+            binding.button3.text -> binding.button3
+            binding.button4.text -> binding.button4
+            else -> null
+        }
+
         if (currentQuestion?.answers?.contains(selectedAnswer) == true) {
             score++
-            Toast.makeText(requireContext(), "Correct!", Toast.LENGTH_SHORT).show()
+            selectedButton?.let { changeButtonBackgroundColor(it, Color.rgb(57, 172, 96)) }
         } else {
-            Toast.makeText(requireContext(), "Wrong answer.", Toast.LENGTH_SHORT).show()
+            selectedButton?.let { changeButtonBackgroundColor(it, Color.rgb(233, 33, 69)) }
         }
-        loadNextQuestion(id)
+
+        // Add a slight delay to allow the user to see the color change
+        selectedButton?.postDelayed({
+            loadNextQuestion(id)
+        }, 700)
     }
 
     private fun loadNextQuestion(id: String) {
@@ -218,4 +234,30 @@ class ChapterQueFragment : Fragment() {
             navigateToResultPage(score, id)
         }
     }
+
+    private fun changeButtonBackgroundColor(view: View, color: Int) {
+        val drawable = GradientDrawable().apply {
+            cornerRadius = 10f
+            setColor(Color.TRANSPARENT)
+        }
+        view.background = drawable
+        ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = 700
+            addUpdateListener { animation ->
+                val progress = animation.animatedValue as Float
+                val fillColor = blendColors(Color.rgb(202, 173, 24), color, progress)
+                drawable.setColor(fillColor)
+            }
+            start()
+        }
+    }
+
+    private fun blendColors(color1: Int, color2: Int, ratio: Float): Int {
+        val inverseRatio = 1 - ratio
+        val r = (Color.red(color1) * inverseRatio + Color.red(color2) * ratio).toInt()
+        val g = (Color.green(color1) * inverseRatio + Color.green(color2) * ratio).toInt()
+        val b = (Color.blue(color1) * inverseRatio + Color.blue(color2) * ratio).toInt()
+        return Color.rgb(r, g, b)
+    }
+
 }
